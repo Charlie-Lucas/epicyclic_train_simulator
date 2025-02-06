@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulateur Épicycloïdal avec Engrenage à Deux Étages</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h3 class="center-align">Simulateur d'Engrenage Épicycloïdal</h3>
+        
+        <div class="input-field">
+            <input type="number" id="module" value="2" min="0.5" step="0.1" onchange="updateGear()">
+            <label for="module">Module</label>
+        </div>
+        <div class="input-field">
+            <input type="number" id="sunTeeth" value="40" min="5" step="1" onchange="updateGear()">
+            <label for="sunTeeth">Dents du soleil</label>
+        </div>
+        <div class="input-field">
+            <input type="number" id="ringTeeth1" value="80" min="10" step="1" onchange="updateGear()">
+            <label for="ringTeeth1">Dents de la couronne extérieure (1er étage)</label>
+        </div>
+        <div class="input-field">
+            <input type="number" id="numPlanets" value="3" min="1" step="1" onchange="updateGear()">
+            <label for="numPlanets">Nombre de planètes</label>
+        </div>
+
+        <div class="input-field">
+            <input type="number" id="inputTorque" value="50" min="1" step="0.1" onchange="updateGear()">
+            <label for="inputTorque">Couple d'entrée (Nm)</label>
+        </div>
+        
+        <div class="input-field">
+            <input type="number" id="inputSpeed" value="1000" min="1" step="1" onchange="updateGear()">
+            <label for="inputSpeed">Vitesse d'entrée (tr/min)</label>
+        </div>
+        
+        <label>
+            <input type="checkbox" id="enableSecondStage" onchange="toggleSecondStage()" />
+            <span>Activer le second étage</span>
+        </label>
+        
+        <div id="secondStageControls" style="display: none;">
+            <div class="input-field">
+                <input type="number" id="planetTeeth2" value="25" min="5" step="1" onchange="updateGear()">
+                <label for="planetTeeth2">Dents des planètes (étage 2)</label>
+            </div>
+            <div class="input-field">
+                <input type="number" id="ringTeeth2" value="90" min="10" step="1" onchange="updateGear()">
+                <label for="ringTeeth2">Dents de la couronne extérieure (2e étage)</label>
+            </div>
+        </div>
+        <div class="stages">
+            <div class="row">
+                <div class="col s12 m12 center-align">
+                    <h5>Récapitulatif du Premier Étage</h5>
+                </div>
+            </div>
+            <div class="row valign-wrapper">
+                <div class="col s12 m7">
+                    <div id="stage1"></div>
+                </div>
+                <div class="col s12 m5 center-align"">
+                    <p id="gearRatio1"></p>
+                    <p id="planetTeeth1"></p>
+                    <p id="outputTorque1"></p>
+                    <p id="outputSpeed1"></p>
+                    <p id="realSizes1"></p>
+                    <p id="dimensions1"></p>
+                </div>
+            </div>
+            <div id="secondStageInfo">
+                <div class="row">
+                    <div class="col s12 m12 center-align">
+                        <h5>Récapitulatif du Second Étage</h5>
+                    </div>
+                </div>
+                <div class="row valign-wrapper">
+                    <div class="col s12 m7">
+                        <div id="stage2"></div>
+                    </div>
+                    <div class="col s12 m5 center-align"">
+                        <p id="gearRatio2"></p>
+                        <p id="outputTorque2"></p>
+                        <p id="outputSpeed2"></p>
+                        <p id="realSizes2"></p>
+                        <p id="dimensions2"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col s12 m12 center-align">
+                <h5>Récapitulatif Général</h5>
+                <p id="totalReduction"></p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
